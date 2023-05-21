@@ -1,0 +1,19 @@
+[package]
+name = "front-end"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+
+[dependencies]
+leptos = "0.3.0"
+leptos_router = "0.3.0"
+stylers = "0.3.1"
+
+# [[workspace.metadata.leptos]]
+# # project name
+# name = "leptos-project"
+# bin-package = "server"
+# lib-package = "front-end"
+
