@@ -5,15 +5,11 @@ edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
+[toolchain]
+channel = "nightly"
+targets = ["wasm32-unknown-unknown"]
 
 [dependencies]
 leptos = "0.3.0"
 leptos_router = "0.3.0"
 stylers = "0.3.1"
-
-# [[workspace.metadata.leptos]]
-# # project name
-# name = "leptos-project"
-# bin-package = "server"
-# lib-package = "front-end"
-

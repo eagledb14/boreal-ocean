@@ -1,6 +1,5 @@
 use leptos::*;
-// use stylers::*;
-//use leptos_meta::*;
+use stylers::*;
 // use leptos_router::*;
 
 fn main() {
@@ -9,13 +8,15 @@ fn main() {
 
 #[component]
 fn App(cx: Scope) -> impl IntoView {
-    // let (count, set_count) = create_signal(cx, 0);
-    // provide_meta_context(cx);
+    let body = style! {"App",
+        * {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+    };
 
-    view! { cx, 
-        // <Stylesheet id="leptos" href="style.css"/>
-        // <h1> "Hi There" </h1>
-    
+    view! { cx, class=body,
         <Title/>
     }
 }
@@ -23,16 +24,15 @@ fn App(cx: Scope) -> impl IntoView {
 
 #[component]
 fn Title(cx: Scope) -> impl IntoView {
-    // let styles = style!{"Title",
-    //     h1 {
-    //         background-color: blue;
-    //         color: while;
-    //         padding: 100px;
-    //     }
-    // };
+    let title = style! {"Title",
+        h1 {
+            background-color: blue;
+            color: white;
+        }
+    };
 
-    // view! { cx, class = styles, 
-    view! { cx, 
+    view! { cx, class=title,
+        // <h1 style="color:white; background-color:blue; ">
         <h1>
             "Boreal Ocean"
         </h1>
