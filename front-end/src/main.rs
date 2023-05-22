@@ -8,15 +8,8 @@ fn main() {
 
 #[component]
 fn App(cx: Scope) -> impl IntoView {
-    let body = style! {"App",
-        * {
-            margin: 0px;
-            padding: 0px;
-            box-sizing: border-box;
-        }
-    };
 
-    view! { cx, class=body,
+    view! { cx, 
         <Title/>
     }
 }

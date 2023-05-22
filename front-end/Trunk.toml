@@ -1,4 +1,12 @@
 [[hooks]]
+#copying styles file into directory
 stage = "post_build"
 command = "sh"
 command_arguments = ["-c", "cp ./target/stylers/main.css $TRUNK_STAGING_DIR/"]
+
+
+[[hooks]]
+#copying global css file into directory
+stage = "post_build"
+command = "sh"
+command_arguments = ["-c", "cp ./style/global.css $TRUNK_STAGING_DIR/"]
