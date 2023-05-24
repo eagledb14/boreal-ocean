@@ -2,6 +2,7 @@ use std::{fs, fmt};
 use chrono::NaiveTime;
 use std::net::{SocketAddr, IpAddr};
 use std::str::FromStr;
+use std::env::args;
 
 
 // TODO
@@ -25,31 +26,42 @@ fn main() {
     }
 
     for t in traffic {
-        println!("{}", t);
+        println!("{}\n", t);
     }
+}
 
-    
+fn read_stdin() {
+
 }
 
 fn parse_traffic(params: &str) -> Option<Connection> {
-    let parts = params.split(" ").collect::<Vec<_>>();
+    let parts = params.split(" ").map(String::from).collect::<Vec<String>>();
 
     //continues if the string input is not a part of the ip or ip6 protocal
     if let Some(protocal) = parts.get(1) {
-        match protocal {
-            &"IP" | &"IP6" => (),
+        match protocal.as_str() {
+            "IP" | "IP6" => (),
             _ => return None,
         };
     }
 
-    let timestamp = match NaiveTime::parse_from_str(parts[0], "%T%.f") {
+    let timestamp = match NaiveTime::parse_from_str(&parts[0], "%T%.f") {
         Ok(time) => time,
         Err(_) => return None,
     };
 
     
-    let (source, dest) = parse_ip_and_ip6(parts[2], parts[4]);
-    return Some(Connection::new(timestamp, source, dest, Vec::new()));
+    let (source, dest) = parse_ip_and_ip6(&parts[2], &parts[4]);
+
+    // grab any additional information from this parameter
+    let misc = if params.len() > 5 {
+        parts[5..].to_vec()
+    }
+    else {
+        Vec::<String>::new()
+    };
+
+    return Some(Connection::new(timestamp, source, dest, misc));
 }
 
 fn parse_ip_and_ip6(source_string: &str, destination_string: &str) -> (Option<SocketAddr>, Option<SocketAddr>){
@@ -67,7 +79,6 @@ fn parse_ip_and_ip6(source_string: &str, destination_string: &str) -> (Option<So
             
         sock_addr
     };
-
 
     let destination_string = destination_string.trim_end_matches(":");
     let destination = if let Some(port_location) = destination_string.rfind('.') {
@@ -95,8 +106,6 @@ struct Connection {
     misc: Vec<String>,
 }
 
-
-
 impl Connection {
     pub fn new(timestamp: NaiveTime, source: Option<SocketAddr>, destination: Option<SocketAddr>, misc: Vec<String>) -> Self {
         Self {
@@ -107,8 +116,6 @@ impl Connection {
         }
     }
 }
-
-
 
 impl fmt::Display for Connection {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
