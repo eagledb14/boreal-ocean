@@ -4,6 +4,13 @@ use std::net::{SocketAddr, IpAddr};
 use std::str::FromStr;
 
 
+// TODO
+// make it more cli friendly
+//// add flags for reading from a file, like it is now
+//// add flags to read from stdin
+//// add flags to read directly from tcpdump, you have to include the interface and flags, or not
+////// give them the flags option
+//// for zeek, if you ever figure out how to use that
 fn main() {
 
     let in_string = fs::read_to_string("input-analysis.txt").expect("couldn't find file");
@@ -20,6 +27,8 @@ fn main() {
     for t in traffic {
         println!("{}", t);
     }
+
+    
 }
 
 fn parse_traffic(params: &str) -> Option<Connection> {
@@ -116,7 +125,6 @@ impl fmt::Display for Connection {
         };
 
         if !(&self.misc.is_empty()) {
-
             write!(f, "Misc: {}", self.misc.join(", "))
         }
         else {
