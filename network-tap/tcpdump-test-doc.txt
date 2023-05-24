@@ -1,0 +1,200 @@
+00:45:22.941278 IP 192.168.86.25.22 > 192.168.86.1.41524: Flags [P.], seq 2996527702:2996527890, ack 2826547290, win 501, options [nop,nop,TS val 2802443229 ecr 2416587387], length 188
+00:45:22.988773 IP 192.168.86.1.41524 > 192.168.86.25.22: Flags [.], ack 188, win 1571, options [nop,nop,TS val 2416587456 ecr 2802443229], length 0
+00:45:23.283609 IP 192.168.86.25.22 > 218.92.0.35.28383: Flags [.], ack 2979171182, win 503, options [nop,nop,TS val 3117670930 ecr 10475324], length 0
+00:45:23.430170 IP 192.168.86.25.22 > 87.248.226.146.49716: Flags [P.], seq 1413600455:1413600507, ack 95178756, win 502, options [nop,nop,TS val 202044666 ecr 3148272709], length 52
+00:45:23.651218 IP 192.168.86.25.22 > 218.92.0.35.28383: Flags [.], ack 65, win 503, options [nop,nop,TS val 3117671297 ecr 10475412], length 0
+00:45:23.651241 IP 192.168.86.25.22 > 87.248.226.146.49716: Flags [.], ack 53, win 502, options [nop,nop,TS val 202044887 ecr 3148276376], length 0
+00:45:23.651416 IP 192.168.86.25.22 > 218.92.0.35.28383: Flags [P.], seq 0:64, ack 65, win 503, options [nop,nop,TS val 3117671298 ecr 10475412], length 64
+00:45:23.653264 IP 192.168.86.25.22 > 87.248.226.146.49716: Flags [F.], seq 52, ack 54, win 502, options [nop,nop,TS val 202044889 ecr 3148276376], length 0
+00:45:24.067870 IP 192.168.86.25.22 > 218.92.0.35.28383: Flags [P.], seq 64:144, ack 145, win 503, options [nop,nop,TS val 3117671714 ecr 10475507], length 80
+00:45:24.511199 IP 192.168.86.25.22 > 218.92.0.35.28383: Flags [.], ack 257, win 503, options [nop,nop,TS val 3117672157 ecr 10475636], length 0
+00:45:24.521890 STP 802.1d, Config, Flags [none], bridge-id 8000.60:b7:6e:d5:a4:0a.8002, length 35
+00:45:26.185681 ARP, Request who-has 192.168.86.21 (a0:36:bc:b8:25:69) tell 192.168.86.1, length 46
+00:45:26.186462 ARP, Request who-has 192.168.86.29 (6a:82:c1:c5:3b:f1) tell 192.168.86.1, length 46
+00:45:26.187043 ARP, Request who-has 192.168.86.22 (92:87:82:c8:e5:34) tell 192.168.86.1, length 46
+00:45:26.187560 ARP, Request who-has 192.168.86.23 (b6:28:10:88:45:fd) tell 192.168.86.1, length 46
+00:45:26.188204 ARP, Request who-has 192.168.86.20 (f6:d1:ba:21:bf:06) tell 192.168.86.1, length 46
+00:45:26.189048 ARP, Request who-has 192.168.86.24 (c6:b7:74:33:0f:ae) tell 192.168.86.1, length 46
+00:45:26.189139 ARP, Request who-has 192.168.86.31 (f4:6b:8c:cd:da:80) tell 192.168.86.1, length 46
+00:45:26.189158 ARP, Reply 192.168.86.31 is-at f4:6b:8c:cd:da:80, length 28
+00:45:26.201637 IP 192.168.86.25.22 > 218.92.0.35.28383: Flags [P.], seq 144:224, ack 257, win 503, options [nop,nop,TS val 3117673848 ecr 10475636], length 80
+00:45:26.521602 STP 802.1d, Config, Flags [none], bridge-id 8000.60:b7:6e:d5:a4:0a.8002, length 35
+00:45:27.747191 IP 192.168.86.25.22 > 218.92.0.35.28383: Flags [.], ack 353, win 503, options [nop,nop,TS val 3117675393 ecr 10476478], length 0
+00:45:28.393851 IP 0.0.0.0.68 > 255.255.255.255.67: BOOTP/DHCP, Request from 08:b4:b1:93:b5:05, length 244
+00:45:28.521612 STP 802.1d, Config, Flags [none], bridge-id 8000.60:b7:6e:d5:a4:0a.8002, length 35
+00:45:28.771197 IP 192.168.86.25.59930 > 193.107.20.252.443: Flags [.], ack 3460925097, win 501, options [nop,nop,TS val 4126091201 ecr 2855085788], length 0
+00:45:28.823699 IP 192.168.86.25.59930 > 193.107.20.252.443: Flags [.], ack 1, win 501, options [nop,nop,TS val 4126091254 ecr 2855085788], length 0
+00:45:29.514728 IP6 fe80::f66b:8cff:fecd:da80.41698 > ff12::8384.21027: UDP, length 373
+00:45:29.525042 IP 192.168.86.25.33157 > 192.168.86.255.21027: UDP, length 373
+00:45:29.525218 IP 192.168.86.25.33157 > 192.168.86.255.21027: UDP, length 373
+00:45:29.525403 IP6 fe80::ae50:deff:fec2:e7bb.41698 > ff12::8384.21027: UDP, length 373
+00:45:30.521169 STP 802.1d, Config, Flags [none], bridge-id 8000.60:b7:6e:d5:a4:0a.8002, length 35
+00:45:31.209773 IP 192.168.86.25.22 > 218.92.0.35.28383: Flags [P.], seq 224:304, ack 353, win 503, options [nop,nop,TS val 3117678856 ecr 10476478], length 80
+00:45:31.433546 IP 192.168.86.25.22 > 218.92.0.35.28383: Flags [.], ack 449, win 503, options [nop,nop,TS val 3117679080 ecr 10477395], length 0
+00:45:32.521594 STP 802.1d, Config, Flags [none], bridge-id 8000.60:b7:6e:d5:a4:0a.8002, length 35
+00:45:34.521580 STP 802.1d, Config, Flags [none], bridge-id 8000.60:b7:6e:d5:a4:0a.8002, length 35
+00:45:34.895703 IP 192.168.86.25.22 > 218.92.0.35.28383: Flags [P.], seq 304:384, ack 449, win 503, options [nop,nop,TS val 3117682542 ecr 10477395], length 80
+00:45:35.120046 IP 192.168.86.25.22 > 218.92.0.35.55302: Flags [S.], seq 3727850326, ack 757969702, win 65160, options [mss 1460,sackOK,TS val 3117682766 ecr 10478318,nop,wscale 7], length 0
+00:45:35.120074 IP 192.168.86.25.22 > 218.92.0.35.28383: Flags [.], ack 513, win 503, options [nop,nop,TS val 3117682766 ecr 10478317], length 0
+00:45:35.122293 IP 192.168.86.25.22 > 218.92.0.35.28383: Flags [F.], seq 384, ack 514, win 503, options [nop,nop,TS val 3117682769 ecr 10478317], length 0
+00:45:35.316019 IP 192.168.86.25.22 > 218.92.0.35.55302: Flags [P.], seq 1:42, ack 1, win 510, options [nop,nop,TS val 3117682962 ecr 10478372], length 41: SSH: SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.1
+00:45:35.324285 IP 192.168.86.25.22 > 218.92.0.35.55302: Flags [.], ack 16, win 510, options [nop,nop,TS val 3117682971 ecr 10478381], length 0
+00:45:35.529109 IP 192.168.86.25.22 > 218.92.0.35.55302: Flags [P.], seq 42:1122, ack 16, win 510, options [nop,nop,TS val 3117683175 ecr 10478421], length 1080
+00:45:35.529134 IP 192.168.86.25.22 > 218.92.0.35.55302: Flags [.], ack 872, win 504, options [nop,nop,TS val 3117683175 ecr 10478423], length 0
+00:45:35.939114 IP 192.168.86.25.22 > 218.92.0.35.55302: Flags [.], ack 952, win 504, options [nop,nop,TS val 3117683585 ecr 10478488], length 0
+00:45:35.940783 IP 192.168.86.25.22 > 218.92.0.35.55302: Flags [P.], seq 1122:1434, ack 952, win 504, options [nop,nop,TS val 3117683587 ecr 10478488], length 312
+00:45:36.187577 IP 192.168.86.25.22 > 218.92.0.35.55302: Flags [.], ack 968, win 504, options [nop,nop,TS val 3117683834 ecr 10478580], length 0
+00:45:36.521610 STP 802.1d, Config, Flags [none], bridge-id 8000.60:b7:6e:d5:a4:0a.8002, length 35
+00:45:36.553571 IP 192.168.86.25.22 > 218.92.0.35.55302: Flags [.], ack 1032, win 504, options [nop,nop,TS val 3117684200 ecr 10478638], length 0
+00:45:36.553797 IP 192.168.86.25.22 > 218.92.0.35.55302: Flags [P.], seq 1434:1498, ack 1032, win 504, options [nop,nop,TS val 3117684200 ecr 10478638], length 64
+00:45:36.778466 IP 192.168.86.25.22 > 218.92.0.35.55302: Flags [P.], seq 1498:1578, ack 1112, win 504, options [nop,nop,TS val 3117684425 ecr 10478730], length 80
+00:45:36.963062 IP 192.168.86.25.22 > 157.230.254.228.58318: Flags [S.], seq 421244298, ack 422848472, win 65160, options [mss 1460,sackOK,TS val 1496080422 ecr 1673679738,nop,wscale 7], length 0
+00:45:37.003604 IP 192.168.86.25.22 > 218.92.0.35.55302: Flags [.], ack 1208, win 504, options [nop,nop,TS val 3117684650 ecr 10478786], length 0
+00:45:37.167459 IP 192.168.86.25.22 > 157.230.254.228.58318: Flags [.], ack 23, win 509, options [nop,nop,TS val 1496080627 ecr 1673680058], length 0
+00:45:37.181877 IP 192.168.86.25.22 > 157.230.254.228.58318: Flags [P.], seq 1:42, ack 23, win 509, options [nop,nop,TS val 1496080641 ecr 1673680058], length 41: SSH: SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.1
+00:45:37.372700 IP 192.168.86.25.22 > 157.230.254.228.58318: Flags [P.], seq 42:1122, ack 23, win 509, options [nop,nop,TS val 1496080832 ecr 1673680277], length 1080
+00:45:37.415557 IP 192.168.86.25.22 > 157.230.254.228.58318: Flags [.], ack 999, win 502, options [nop,nop,TS val 1496080875 ecr 1673680277], length 0
+00:45:37.594382 IP 192.168.86.25.22 > 157.230.254.228.58318: Flags [.], ack 1047, win 502, options [nop,nop,TS val 1496081054 ecr 1673680510], length 0
+00:45:37.606590 IP 192.168.86.25.22 > 157.230.254.228.58318: Flags [P.], seq 1122:1654, ack 1047, win 502, options [nop,nop,TS val 1496081066 ecr 1673680510], length 532
+00:45:38.031650 IP 192.168.86.25.22 > 157.230.254.228.58318: Flags [.], ack 1063, win 502, options [nop,nop,TS val 1496081491 ecr 1673680702], length 0
+00:45:38.406629 IP 192.168.86.25.22 > 157.230.254.228.58318: Flags [.], ack 1115, win 502, options [nop,nop,TS val 1496081866 ecr 1673681127], length 0
+00:45:38.406814 IP 192.168.86.25.22 > 157.230.254.228.58318: Flags [P.], seq 1654:1706, ack 1115, win 502, options [nop,nop,TS val 1496081866 ecr 1673681127], length 52
+00:45:38.521538 STP 802.1d, Config, Flags [none], bridge-id 8000.60:b7:6e:d5:a4:0a.8002, length 35
+00:45:38.647558 IP 192.168.86.25.22 > 157.230.254.228.58318: Flags [.], ack 1199, win 502, options [nop,nop,TS val 1496082107 ecr 1673681502], length 0
+00:45:39.297075 IP 192.168.86.25.22 > 218.92.0.53.58020: Flags [S.], seq 1514314358, ack 3998062088, win 65160, options [mss 1460,sackOK,TS val 3181821675 ecr 559676328,nop,wscale 7], length 0
+00:45:39.625597 IP 192.168.86.25.22 > 218.92.0.53.58020: Flags [.], ack 16, win 509, options [nop,nop,TS val 3181822004 ecr 559676373], length 0
+00:45:39.639645 IP 192.168.86.25.22 > 218.92.0.53.58020: Flags [P.], seq 1:42, ack 16, win 509, options [nop,nop,TS val 3181822018 ecr 559676373], length 41: SSH: SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.1
+00:45:39.830244 IP 192.168.86.25.22 > 218.92.0.53.58020: Flags [P.], seq 42:1122, ack 16, win 509, options [nop,nop,TS val 3181822208 ecr 559676459], length 1080
+00:45:39.832147 IP 192.168.86.25.22 > 218.92.0.53.58020: Flags [F.], seq 1122, ack 688, win 504, options [nop,nop,TS val 3181822210 ecr 559676459], length 0
+00:45:40.037899 IP 192.168.86.25.22 > 218.92.0.53.58020: Flags [R], seq 1514315480, win 0, length 0
+00:45:40.425216 IP 192.168.86.25.22 > 218.92.0.35.55302: Flags [P.], seq 1578:1658, ack 1208, win 504, options [nop,nop,TS val 3117688071 ecr 10478786], length 80
+00:45:40.521518 STP 802.1d, Config, Flags [none], bridge-id 8000.60:b7:6e:d5:a4:0a.8002, length 35
+00:45:40.854226 IP 192.168.86.25.22 > 218.92.0.35.55302: Flags [.], ack 1304, win 504, options [nop,nop,TS val 3117688500 ecr 10479698], length 0
+00:45:42.067526 IP 192.168.86.25.22 > 157.230.254.228.58318: Flags [P.], seq 1706:1758, ack 1199, win 502, options [nop,nop,TS val 1496085527 ecr 1673681502], length 52
+00:45:42.290755 IP 192.168.86.25.22 > 157.230.254.228.58318: Flags [.], ack 1251, win 502, options [nop,nop,TS val 1496085750 ecr 1673685162], length 0
+00:45:42.293207 IP 192.168.86.25.22 > 157.230.254.228.58318: Flags [F.], seq 1758, ack 1252, win 502, options [nop,nop,TS val 1496085752 ecr 1673685162], length 0
+00:45:42.521561 STP 802.1d, Config, Flags [none], bridge-id 8000.60:b7:6e:d5:a4:0a.8002, length 35
+00:45:43.926247 IP 192.168.86.25.59930 > 193.107.20.252.443: Flags [.], ack 1, win 501, options [nop,nop,TS val 4126106356 ecr 2855101052], length 0
+00:45:44.023824 IP 192.168.86.25.59930 > 193.107.20.252.443: Flags [.], ack 1, win 501, options [nop,nop,TS val 4126106454 ecr 2855101052], length 0
+00:45:44.317005 IP 192.168.86.25.22 > 218.92.0.35.55302: Flags [P.], seq 1658:1738, ack 1304, win 504, options [nop,nop,TS val 3117691963 ecr 10479698], length 80
+00:45:44.521488 STP 802.1d, Config, Flags [none], bridge-id 8000.60:b7:6e:d5:a4:0a.8002, length 35
+00:45:44.543444 IP 192.168.86.25.22 > 218.92.0.35.55302: Flags [.], ack 1400, win 504, options [nop,nop,TS val 3117692190 ecr 10480672], length 0
+00:45:46.274667 IP 192.168.86.25.22 > 218.92.0.35.55302: Flags [P.], seq 1738:1818, ack 1400, win 504, options [nop,nop,TS val 3117693921 ecr 10480672], length 80
+00:45:46.521456 STP 802.1d, Config, Flags [none], bridge-id 8000.60:b7:6e:d5:a4:0a.8002, length 35
+00:45:46.594149 IP 192.168.86.25.22 > 218.92.0.35.64457: Flags [S.], seq 3380576153, ack 3181580339, win 65160, options [mss 1460,sackOK,TS val 3117694240 ecr 10481160,nop,wscale 7], length 0
+00:45:46.594173 IP 192.168.86.25.22 > 218.92.0.35.55302: Flags [.], ack 1464, win 504, options [nop,nop,TS val 3117694240 ecr 10481160], length 0
+00:45:46.596537 IP 192.168.86.25.22 > 218.92.0.35.55302: Flags [F.], seq 1818, ack 1465, win 504, options [nop,nop,TS val 3117694243 ecr 10481160], length 0
+00:45:46.799582 IP 192.168.86.25.22 > 218.92.0.35.64457: Flags [.], ack 16, win 509, options [nop,nop,TS val 3117694446 ecr 10481240], length 0
+00:45:46.813768 IP 192.168.86.25.22 > 218.92.0.35.64457: Flags [P.], seq 1:42, ack 16, win 509, options [nop,nop,TS val 3117694460 ecr 10481240], length 41: SSH: SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.1
+00:45:47.000998 IP 192.168.86.25.22 > 218.92.0.35.64457: Flags [P.], seq 42:1122, ack 16, win 509, options [nop,nop,TS val 3117694647 ecr 10481295], length 1080
+00:45:47.043655 IP 192.168.86.25.22 > 218.92.0.35.64457: Flags [.], ack 872, win 503, options [nop,nop,TS val 3117694690 ecr 10481296], length 0
+00:45:47.202945 IP 192.168.86.25.22 > 218.92.0.35.64457: Flags [.], ack 952, win 503, options [nop,nop,TS val 3117694849 ecr 10481352], length 0
+00:45:47.204483 IP 192.168.86.25.22 > 218.92.0.35.64457: Flags [P.], seq 1122:1434, ack 952, win 503, options [nop,nop,TS val 3117694851 ecr 10481352], length 312
+00:45:47.451837 IP 192.168.86.25.22 > 218.92.0.35.64457: Flags [.], ack 968, win 503, options [nop,nop,TS val 3117695098 ecr 10481393], length 0
+00:45:47.817013 IP 192.168.86.25.22 > 218.92.0.35.64457: Flags [.], ack 1032, win 503, options [nop,nop,TS val 3117695463 ecr 10481454], length 0
+00:45:47.817217 IP 192.168.86.25.22 > 218.92.0.35.64457: Flags [P.], seq 1434:1498, ack 1032, win 503, options [nop,nop,TS val 3117695463 ecr 10481454], length 64
+00:45:48.029186 IP 192.168.86.25.22 > 218.92.0.35.64457: Flags [P.], seq 1498:1578, ack 1112, win 503, options [nop,nop,TS val 3117695675 ecr 10481546], length 80
+00:45:48.271557 IP 192.168.86.25.22 > 218.92.0.35.64457: Flags [.], ack 1208, win 503, options [nop,nop,TS val 3117695918 ecr 10481599], length 0
+00:45:48.521465 STP 802.1d, Config, Flags [none], bridge-id 8000.60:b7:6e:d5:a4:0a.8002, length 35
+00:45:50.521380 STP 802.1d, Config, Flags [none], bridge-id 8000.60:b7:6e:d5:a4:0a.8002, length 35
+00:45:51.349477 IP6 fe80::accc:b554:f514:7ac8.54268 > ff12::8384.21027: UDP, length 279
+00:45:51.349479 IP 192.168.86.26.58603 > 192.168.86.255.21027: UDP, length 279
+00:45:51.692869 IP 192.168.86.25.22 > 218.92.0.35.64457: Flags [P.], seq 1578:1658, ack 1208, win 503, options [nop,nop,TS val 3117699339 ecr 10481599], length 80
+00:45:52.118309 IP 192.168.86.25.22 > 218.92.0.35.64457: Flags [.], ack 1304, win 503, options [nop,nop,TS val 3117699765 ecr 10482515], length 0
+00:45:52.521423 STP 802.1d, Config, Flags [none], bridge-id 8000.60:b7:6e:d5:a4:0a.8002, length 35
+00:45:54.521565 STP 802.1d, Config, Flags [none], bridge-id 8000.60:b7:6e:d5:a4:0a.8002, length 35
+00:45:55.580939 IP 192.168.86.25.22 > 218.92.0.35.64457: Flags [P.], seq 1658:1738, ack 1304, win 503, options [nop,nop,TS val 3117703227 ecr 10482515], length 80
+00:45:55.807917 IP 192.168.86.25.22 > 218.92.0.35.64457: Flags [.], ack 1400, win 503, options [nop,nop,TS val 3117703454 ecr 10483487], length 0
+00:45:56.521389 STP 802.1d, Config, Flags [none], bridge-id 8000.60:b7:6e:d5:a4:0a.8002, length 35
+00:45:57.539674 IP 192.168.86.25.22 > 218.92.0.35.64457: Flags [P.], seq 1738:1818, ack 1400, win 503, options [nop,nop,TS val 3117705186 ecr 10483487], length 80
+00:45:57.862555 IP 192.168.86.25.22 > 218.92.0.35.64457: Flags [.], ack 1464, win 503, options [nop,nop,TS val 3117705509 ecr 10483976], length 0
+00:45:57.864763 IP 192.168.86.25.22 > 218.92.0.35.64457: Flags [F.], seq 1818, ack 1465, win 503, options [nop,nop,TS val 3117705511 ecr 10483976], length 0
+00:45:58.265538 IP 192.168.86.25.59930 > 193.107.20.252.443: Flags [P.], seq 0:34, ack 35, win 501, options [nop,nop,TS val 4126120696 ecr 2855130285], length 34
+00:45:58.394165 IP 0.0.0.0.68 > 255.255.255.255.67: BOOTP/DHCP, Request from 08:b4:b1:93:b5:05, length 244
+00:45:58.521431 STP 802.1d, Config, Flags [none], bridge-id 8000.60:b7:6e:d5:a4:0a.8002, length 35
+00:45:59.514437 IP6 fe80::f66b:8cff:fecd:da80.41698 > ff12::8384.21027: UDP, length 373
+00:45:59.520407 IP 192.168.86.25.33157 > 192.168.86.255.21027: UDP, length 373
+00:45:59.520576 IP 192.168.86.25.33157 > 192.168.86.255.21027: UDP, length 373
+00:45:59.520798 IP6 fe80::ae50:deff:fec2:e7bb.41698 > ff12::8384.21027: UDP, length 373
+00:46:00.264246 IP 192.168.86.31.41607 > 192.168.86.1.53: 28235+ [1au] A? discovery-v6.syncthing.net. (55)
+00:46:00.264467 IP 192.168.86.31.33171 > 192.168.86.1.53: 64483+ [1au] AAAA? discovery-v6.syncthing.net. (55)
+00:46:00.289515 IP 192.168.86.1.53 > 192.168.86.31.41607: 28235 0/1/1 (122)
+00:46:00.289516 IP 192.168.86.1.53 > 192.168.86.31.33171: 64483 2/0/1 AAAA 2400:6180:100:d0::741:a001, AAAA 2a03:b0c0:0:1010::bb:4001 (111)
+00:46:00.290815 IP 192.168.86.31.46888 > 192.168.86.1.53: 32605+ [1au] A? discovery-v6.syncthing.net. (55)
+00:46:00.291096 IP 192.168.86.31.53766 > 192.168.86.1.53: 15114+ [1au] AAAA? discovery-v6.syncthing.net. (55)
+00:46:00.315462 IP 192.168.86.1.53 > 192.168.86.31.46888: 32605 0/1/1 (122)
+00:46:00.327863 IP 192.168.86.1.53 > 192.168.86.31.53766: 15114 2/0/1 AAAA 2400:6180:100:d0::741:a001, AAAA 2a03:b0c0:0:1010::bb:4001 (111)
+00:46:00.521350 STP 802.1d, Config, Flags [none], bridge-id 8000.60:b7:6e:d5:a4:0a.8002, length 35
+00:46:02.521334 STP 802.1d, Config, Flags [none], bridge-id 8000.60:b7:6e:d5:a4:0a.8002, length 35
+00:46:04.521342 STP 802.1d, Config, Flags [none], bridge-id 8000.60:b7:6e:d5:a4:0a.8002, length 35
+00:46:06.521324 STP 802.1d, Config, Flags [none], bridge-id 8000.60:b7:6e:d5:a4:0a.8002, length 35
+00:46:08.521309 STP 802.1d, Config, Flags [none], bridge-id 8000.60:b7:6e:d5:a4:0a.8002, length 35
+00:46:08.528703 IP6 fe80::109a:df8b:248d:c61e > ff02::1: ICMP6, router advertisement, length 72
+00:46:08.544562 IP6 fe80::f66b:8cff:fecd:da80 > ff02::16: HBH ICMP6, multicast listener report v2, 2 group record(s), length 48
+00:46:08.716398 IP6 fe80::accc:b554:f514:7ac8 > ff02::16: HBH ICMP6, multicast listener report v2, 3 group record(s), length 68
+00:46:08.728314 IP6 fe80::ae50:deff:fec2:e7bb > ff02::16: HBH ICMP6, multicast listener report v2, 2 group record(s), length 48
+00:46:09.047610 IP6 fe80::f66b:8cff:fecd:da80 > ff02::16: HBH ICMP6, multicast listener report v2, 2 group record(s), length 48
+00:46:09.080816 IP6 fe80::ae50:deff:fec2:e7bb > ff02::16: HBH ICMP6, multicast listener report v2, 2 group record(s), length 48
+00:46:09.272321 IP6 fe80::accc:b554:f514:7ac8 > ff02::16: HBH ICMP6, multicast listener report v2, 3 group record(s), length 68
+00:46:10.521210 STP 802.1d, Config, Flags [none], bridge-id 8000.60:b7:6e:d5:a4:0a.8002, length 35
+00:46:10.850063 IP 192.168.86.1.48565 > 239.255.255.250.1900: UDP, length 390
+00:46:10.850064 IP 192.168.86.1.48565 > 239.255.255.250.1900: UDP, length 462
+00:46:10.850066 IP 192.168.86.1.48565 > 239.255.255.250.1900: UDP, length 399
+00:46:10.850109 IP 192.168.86.1.48565 > 239.255.255.250.1900: UDP, length 458
+00:46:10.850332 IP 192.168.86.1.48565 > 239.255.255.250.1900: UDP, length 399
+00:46:10.850524 IP 192.168.86.1.48565 > 239.255.255.250.1900: UDP, length 438
+00:46:10.850785 IP 192.168.86.1.48565 > 239.255.255.250.1900: UDP, length 399
+00:46:10.850960 IP 192.168.86.1.48565 > 239.255.255.250.1900: UDP, length 452
+00:46:10.851229 IP 192.168.86.1.48565 > 239.255.255.250.1900: UDP, length 454
+00:46:10.851453 IP 192.168.86.1.48565 > 239.255.255.250.1900: UDP, length 470
+00:46:10.851638 IP 192.168.86.1.48565 > 239.255.255.250.1900: UDP, length 454
+00:46:11.103399 IP 192.168.86.1.48565 > 239.255.255.250.1900: UDP, length 454
+00:46:11.103401 IP 192.168.86.1.48565 > 239.255.255.250.1900: UDP, length 470
+00:46:11.103402 IP 192.168.86.1.48565 > 239.255.255.250.1900: UDP, length 454
+00:46:11.103404 IP 192.168.86.1.48565 > 239.255.255.250.1900: UDP, length 452
+00:46:11.103478 IP 192.168.86.1.48565 > 239.255.255.250.1900: UDP, length 399
+00:46:11.103621 IP 192.168.86.1.48565 > 239.255.255.250.1900: UDP, length 438
+00:46:11.103784 IP 192.168.86.1.48565 > 239.255.255.250.1900: UDP, length 399
+00:46:11.103925 IP 192.168.86.1.48565 > 239.255.255.250.1900: UDP, length 458
+00:46:11.104085 IP 192.168.86.1.48565 > 239.255.255.250.1900: UDP, length 399
+00:46:11.104223 IP 192.168.86.1.48565 > 239.255.255.250.1900: UDP, length 462
+00:46:11.104376 IP 192.168.86.1.48565 > 239.255.255.250.1900: UDP, length 390
+00:46:12.521267 STP 802.1d, Config, Flags [none], bridge-id 8000.60:b7:6e:d5:a4:0a.8002, length 35
+00:46:13.631811 IP 192.168.86.25.59930 > 193.107.20.252.443: Flags [.], ack 35, win 501, options [nop,nop,TS val 4126136062 ecr 2855130495], length 0
+00:46:13.719712 IP 192.168.86.25.59930 > 193.107.20.252.443: Flags [.], ack 35, win 501, options [nop,nop,TS val 4126136150 ecr 2855130495], length 0
+00:46:13.953600 IP6 fe80::109a:df8b:248d:c61e.5353 > ff02::fb.5353: 0 [2q] A (QM)? Living-Room.local. AAAA (QM)? Living-Room.local. (41)
+00:46:13.953602 IP 192.168.86.250.5353 > 224.0.0.251.5353: 0 [2q] A (QM)? Living-Room.local. AAAA (QM)? Living-Room.local. (41)
+00:46:13.954594 IP 192.168.86.250.5353 > 224.0.0.251.5353: 0*- [0q] 3/0/1 (Cache flush) AAAA fe80::109a:df8b:248d:c61e, (Cache flush) A 192.168.86.250, (Cache flush) AAAA fd17:e438:9bd5:46f6:6:fdbe:ee4b:1fc7 (121)
+00:46:13.954596 IP6 fe80::109a:df8b:248d:c61e.5353 > ff02::fb.5353: 0*- [0q] 3/0/1 (Cache flush) AAAA fe80::109a:df8b:248d:c61e, (Cache flush) A 192.168.86.250, (Cache flush) AAAA fd17:e438:9bd5:46f6:6:fdbe:ee4b:1fc7 (121)
+00:46:14.521261 STP 802.1d, Config, Flags [none], bridge-id 8000.60:b7:6e:d5:a4:0a.8002, length 35
+00:46:16.521272 STP 802.1d, Config, Flags [none], bridge-id 8000.60:b7:6e:d5:a4:0a.8002, length 35
+00:46:18.521371 STP 802.1d, Config, Flags [none], bridge-id 8000.60:b7:6e:d5:a4:0a.8002, length 35
+00:46:20.521226 STP 802.1d, Config, Flags [none], bridge-id 8000.60:b7:6e:d5:a4:0a.8002, length 35
+00:46:21.348243 IP6 fe80::accc:b554:f514:7ac8.54268 > ff12::8384.21027: UDP, length 279
+00:46:21.348244 IP 192.168.86.26.58603 > 192.168.86.255.21027: UDP, length 279
+00:46:22.521127 STP 802.1d, Config, Flags [none], bridge-id 8000.60:b7:6e:d5:a4:0a.8002, length 35
+00:46:24.521286 STP 802.1d, Config, Flags [none], bridge-id 8000.60:b7:6e:d5:a4:0a.8002, length 35
+00:46:26.185893 ARP, Request who-has 192.168.86.21 (a0:36:bc:b8:25:69) tell 192.168.86.1, length 46
+00:46:26.187123 ARP, Request who-has 192.168.86.29 (6a:82:c1:c5:3b:f1) tell 192.168.86.1, length 46
+00:46:26.187124 ARP, Request who-has 192.168.86.22 (92:87:82:c8:e5:34) tell 192.168.86.1, length 46
+00:46:26.187631 ARP, Request who-has 192.168.86.23 (b6:28:10:88:45:fd) tell 192.168.86.1, length 46
+00:46:26.188167 ARP, Request who-has 192.168.86.20 (f6:d1:ba:21:bf:06) tell 192.168.86.1, length 46
+00:46:26.188644 ARP, Request who-has 192.168.86.24 (c6:b7:74:33:0f:ae) tell 192.168.86.1, length 46
+00:46:26.189111 ARP, Request who-has 192.168.86.31 (f4:6b:8c:cd:da:80) tell 192.168.86.1, length 46
+00:46:26.189132 ARP, Reply 192.168.86.31 is-at f4:6b:8c:cd:da:80, length 28
+00:46:26.520825 STP 802.1d, Config, Flags [none], bridge-id 8000.60:b7:6e:d5:a4:0a.8002, length 35
+00:46:28.367383 IP 192.168.86.25.22 > 118.97.119.130.44858: Flags [S.], seq 709747841, ack 2324960605, win 65160, options [mss 1460,sackOK,TS val 1980574667 ecr 2581988516,nop,wscale 7], length 0
+00:46:28.394502 IP 0.0.0.0.68 > 255.255.255.255.67: BOOTP/DHCP, Request from 08:b4:b1:93:b5:05, length 244
+00:46:28.521172 STP 802.1d, Config, Flags [none], bridge-id 8000.60:b7:6e:d5:a4:0a.8002, length 35
+00:46:28.571659 IP 192.168.86.25.22 > 118.97.119.130.44858: Flags [.], ack 23, win 509, options [nop,nop,TS val 1980574871 ecr 2581988924], length 0
+00:46:28.581717 IP 192.168.86.25.22 > 118.97.119.130.44858: Flags [P.], seq 1:42, ack 23, win 509, options [nop,nop,TS val 1980574881 ecr 2581988924], length 41: SSH: SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.1
+00:46:28.776912 IP 192.168.86.25.59930 > 193.107.20.252.443: Flags [.], ack 35, win 501, options [nop,nop,TS val 4126151207 ecr 2855145949], length 0
+00:46:28.776939 IP 192.168.86.25.22 > 118.97.119.130.44858: Flags [P.], seq 42:1122, ack 23, win 509, options [nop,nop,TS val 1980575076 ecr 2581989134], length 1080
+00:46:28.847688 IP 192.168.86.25.22 > 118.97.119.130.44858: Flags [.], ack 999, win 502, options [nop,nop,TS val 1980575147 ecr 2581989154], length 0
+00:46:29.035706 IP 192.168.86.25.59930 > 193.107.20.252.443: Flags [.], ack 35, win 501, options [nop,nop,TS val 4126151466 ecr 2855145949], length 0
+00:46:29.186715 IP 192.168.86.25.22 > 118.97.119.130.44858: Flags [.], ack 1047, win 502, options [nop,nop,TS val 1980575486 ecr 2581989399], length 0
+00:46:29.199284 IP 192.168.86.25.22 > 118.97.119.130.44858: Flags [P.], seq 1122:1654, ack 1047, win 502, options [nop,nop,TS val 1980575499 ecr 2581989399], length 532
+00:46:29.514735 IP6 fe80::f66b:8cff:fecd:da80.41698 > ff12::8384.21027: UDP, length 373
+00:46:29.520740 IP 192.168.86.25.33157 > 192.168.86.255.21027: UDP, length 373
+00:46:29.520912 IP 192.168.86.25.33157 > 192.168.86.255.21027: UDP, length 373
+00:46:29.521104 IP6 fe80::ae50:deff:fec2:e7bb.41698 > ff12::8384.21027: UDP, length 373
