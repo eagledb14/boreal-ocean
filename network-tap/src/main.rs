@@ -55,6 +55,7 @@ fn print_connections(connections: &[Connection]) {
 fn read_stdin() -> Vec<Connection> {
     let stdin = io::stdin();
     let mut connections = Vec::<Connection>::new();
+
     for line in stdin.lines() {
         if let Ok(param) = line {
             if let Some(new_connection) = parse_traffic(&param){
@@ -98,7 +99,9 @@ fn parse_traffic(params: &str) -> Option<Connection> {
 
 fn parse_ip_and_ip6(source_string: &str, destination_string: &str) -> (Option<SocketAddr>, Option<SocketAddr>){
     let source = if let Some(port_location) = source_string.rfind('.') {
-        
+        //SocketAddr::from_str only allow for the format ip:port, while the input has the format
+        //ip.port and this is the fastest way that I found, possible to benchmark other ways in the
+        //future
         let str_addr = format!("{}:{}", &source_string[..port_location], &source_string[(port_location + 1)..]);
         SocketAddr::from_str(&str_addr).ok()
     }
