@@ -1,4 +1,4 @@
-use std::{fs, fmt};
+use std::{fs, fmt, io};
 use chrono::NaiveTime;
 use std::net::{SocketAddr, IpAddr};
 use std::str::FromStr;
@@ -14,24 +14,44 @@ use std::env::args;
 //// for zeek, if you ever figure out how to use that
 fn main() {
 
-    let in_string = fs::read_to_string("input-analysis.txt").expect("couldn't find file");
-    let params = in_string.trim().lines();
-    let mut traffic = Vec::<Connection>::new();
+    //if there are not args, then read from stdin
+    if args().len() <= 1 {
+        let connections = read_stdin();
+        for connection in connections {
+            println!("{}\n", connection);
+        }
+        return;
+    }
 
-    for param in params {
+    // let in_string = fs::read_to_string("input-analysis.txt").expect("couldn't find file");
+    // let params = in_string.trim().lines();
+    // let mut traffic = Vec::<Connection>::new();
+    //
+    // for param in params {
+    //
+    //     if let Some(connection) = parse_traffic(&param) {
+    //         traffic.push(connection);
+    //     }
+    // }
+    //
+    // for t in traffic {
+    //     println!("{}\n", t);
+    // }
 
-        if let Some(connection) = parse_traffic(&param) {
-            traffic.push(connection);
+}
+
+fn read_stdin() -> Vec<Connection> {
+    let stdin = io::stdin();
+    let mut connections = Vec::<Connection>::new();
+    for line in stdin.lines() {
+        if let Ok(param) = line {
+            if let Some(new_connection) = parse_traffic(&param){
+                connections.push(new_connection);
+            }
         }
     }
 
-    for t in traffic {
-        println!("{}\n", t);
-    }
-}
-
-fn read_stdin() {
-
+    return connections;
 }
 
 fn parse_traffic(params: &str) -> Option<Connection> {
