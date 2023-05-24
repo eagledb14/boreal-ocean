@@ -12,15 +12,20 @@ use std::env::args;
 //// add flags to read directly from tcpdump, you have to include the interface and flags, or not
 ////// give them the flags option
 //// for zeek, if you ever figure out how to use that
+//// add option to only collect from a certain ip
+//// option to group by input and print the destinations
 fn main() {
 
     //if there are not args, then read from stdin
     if args().len() <= 1 {
         let connections = read_stdin();
-        for connection in connections {
-            println!("{}\n", connection);
-        }
+        print_connections(&connections);
         return;
+    }
+
+
+    for arg in args() {
+        println!("{}", arg);
     }
 
     // let in_string = fs::read_to_string("input-analysis.txt").expect("couldn't find file");
@@ -38,6 +43,13 @@ fn main() {
     //     println!("{}\n", t);
     // }
 
+}
+
+
+fn print_connections(connections: &[Connection]) {
+    for connection in connections {
+        println!("{}\n", connection);
+    }
 }
 
 fn read_stdin() -> Vec<Connection> {
