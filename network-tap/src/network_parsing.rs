@@ -22,6 +22,12 @@ pub fn parse_traffic(params: &str) -> Option<Connection> {
 
     
     let (source, dest) = parse_ip_and_ip6(&parts[2], &parts[4]);
+    let source = if let Some(source) = source {
+        source
+    }
+    else {
+        return None;
+    };
 
     // grab any additional information from this parameter
     let misc = if params.len() > 5 {

@@ -1,18 +1,19 @@
 use chrono::NaiveTime;
-use std::net::SocketAddr;
+use std::net::{SocketAddr, IpAddr};
 use std::fmt::{Display, Formatter, Result};
+use std::collections::HashSet;
 
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct Connection {
-    timestamp: NaiveTime,
-    source: Option<SocketAddr>,
-    destination: Option<SocketAddr>,
-    misc: Vec<String>,
+    pub timestamp: NaiveTime,
+    pub source: SocketAddr,
+    pub destination: Option<SocketAddr>,
+    pub misc: Vec<String>,
 }
 
 impl Connection {
-    pub fn new(timestamp: NaiveTime, source: Option<SocketAddr>, destination: Option<SocketAddr>, misc: Vec<String>) -> Self {
+    pub fn new(timestamp: NaiveTime, source: SocketAddr, destination: Option<SocketAddr>, misc: Vec<String>) -> Self {
         Self {
             timestamp,
             source,
@@ -26,10 +27,7 @@ impl Display for Connection {
     fn fmt(&self, f: &mut Formatter<'_>) -> Result {
         write!(f, "Timestamp: {}\n", self.timestamp)?;
 
-        match &self.source {
-            Some(source) => write!(f, "Source: {}\n", source)?,
-            None => (),
-        };
+        write!(f, "Source: {}\n", self.source)?;
 
         match &self.destination {
             Some(destination) => write!(f, "Destination: {}\n", destination)?,
@@ -45,3 +43,38 @@ impl Display for Connection {
         
     }
 }
+
+#[derive(Debug, Clone)]
+pub struct GroupedConnection {
+    pub source: IpAddr,
+    pub ports: HashSet<u16>,
+    pub destinations: HashSet<SocketAddr>
+}
+
+impl GroupedConnection {
+    pub fn new(source: IpAddr) -> Self {
+        Self {
+            source,
+            ports: HashSet::new(),
+            destinations: HashSet::new()
+        }
+    }
+
+    pub fn push_destination(&mut self, new_destination: SocketAddr) {
+        self.destinations.insert(new_destination);
+    }
+
+    pub fn push_port(&mut self, new_port: u16) {
+        self.ports.insert(new_port);
+    }
+}
+
+
+impl Display for GroupedConnection {
+    fn fmt(&self, f: &mut Formatter<'_>) -> Result {
+        write!(f, "Source: {}\n", self.source)?;
+        write!(f, "Ports: {:?}\n", self.ports)?;
+        write!(f, "Destinations: {:?}", self.destinations)
+    }
+}
+

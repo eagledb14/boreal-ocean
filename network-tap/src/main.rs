@@ -4,14 +4,13 @@ mod connection;
 
 use clap::Parser;
 
-use file_input::{read_stdin, read_file};
+use file_input::{read_stdin, read_file, sort_connections, sort_by_ip};
 use connection::Connection;
 
 
 // TODO
 // make it more cli friendly
 
-//// add flags for reading from a file, like it is now
 //// add flags to read directly from tcpdump, you have to include the interface and flags, or not
 ////// give them the flags option
 
@@ -23,6 +22,7 @@ use connection::Connection;
 
 // DONE
 //// add flags to read from stdin
+//// add flags for reading from a file, like it is now
 
 fn main() {
 
@@ -39,14 +39,29 @@ fn main() {
         connections.append(&mut read_stdin());
     }
 
-    print_connections(&connections);
+    //optional sorting
+    if cli.sort_by_connection {
+        let connections = sort_connections(&connections);
+        for connection in connections {
+            println!("{}\n", connection);
+        }
+    }
+    else if let Some(ip) = cli.sort_by_ip {
+        if let Some(connection) = sort_by_ip(&connections, ip) {
+            println!("{}", connection);
+        }   
+        else {
+            println!("Ip not in the dataset", );
+        }
+    }
+    else {
+        for connection in connections {
+            println!("{}\n", connection);
+        }
+    }
+
 }
 
-fn print_connections(connections: &[Connection]) {
-    for connection in connections {
-        println!("{}\n", connection);
-    }
-}
 
 #[derive(Parser, Debug)]
 struct Cli {
@@ -54,8 +69,11 @@ struct Cli {
     #[arg(short, long, conflicts_with="tcpdump")]
     files: Option<Vec<String>>,
 
-    #[arg(short = 'x', long)]
-    sort: bool,
+    #[arg(short = 'x', long = "connection")]
+    sort_by_connection: bool,
+
+    #[arg(short = 'i', long = "ip")]
+    sort_by_ip: Option<String>,
 
     #[arg(short, long, conflicts_with="files")]
     tcpdump: Option<String>
