@@ -132,12 +132,19 @@ pub fn read_binary() {
 }
 
 pub fn sort_connections(connections: &[Connection]) -> Vec<GroupedConnection> {
-
     return get_grouped_connectons(connections, vec![]).into_values().collect();
+}
+
+pub fn append_to_sorted_connections(new_connections: &[Connection], old_connections: Vec<GroupedConnection>) -> Vec<GroupedConnection> {
+    return get_grouped_connectons(new_connections, old_connections).into_values().collect();
 }
 
 pub fn sort_by_ip(connections: &[Connection], ip: String) -> Option<GroupedConnection> {
     return get_grouped_connectons(&connections, vec![]).get(&IpAddr::from_str(&ip).ok()?).cloned();
+}
+
+pub fn append_to_sort_by_ip(connections: &[Connection], ip: String, old_connection: GroupedConnection) -> Option<GroupedConnection> {
+    return get_grouped_connectons(&connections, vec![old_connection]).get(&IpAddr::from_str(&ip).ok()?).cloned();
 }
 
 fn get_grouped_connectons(
