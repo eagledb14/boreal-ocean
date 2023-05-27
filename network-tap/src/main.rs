@@ -4,7 +4,7 @@ mod connection;
 
 use clap::Parser;
 
-use file_input::{read_binary, read_stdin, read_file, sort_connections, sort_by_ip, read_tcpdump};
+use file_input::{read_binary, read_stdin, read_file, sort_connections, sort_by_ip, read_tcpdump, read_tcp_thread_iterations};
 use connection::Connection;
 
 
@@ -12,6 +12,7 @@ use connection::Connection;
 // make it more cli friendly
 
 //// add flags to read directly from tcpdump, you have to include the interface and flags, or not
+///// working on it
 
 //// for zeek, if you ever figure out how to use that
 
@@ -38,7 +39,11 @@ fn run_cli() {
         }
     }
     else if let Some(tcp_args) = cli.network_tap {
-        read_tcpdump(&tcp_args);
+        let (handler, receiver) = read_tcpdump(&tcp_args, cli.count);
+
+        if let Some(handle) = handler {
+            connections.append(&mut read_tcp_thread_iterations(handle, receiver));
+        }
     }
     else if cli.binary {
         read_binary();
@@ -49,10 +54,15 @@ fn run_cli() {
 
     //optional sorting
     if cli.sort_by_connection {
-        let connections = sort_connections(&connections);
+        let sorted_connections = sort_connections(&connections);
+        for connection in sorted_connections {
+            println!("{}\n", connection);
+        }
+
         for connection in connections {
             println!("{}\n", connection);
         }
+
     }
     else if let Some(ip) = cli.sort_by_ip {
         if let Some(connection) = sort_by_ip(&connections, ip) {
@@ -83,6 +93,9 @@ struct Cli {
 
     #[arg(short = 't', long = "tap", conflicts_with="files", conflicts_with="binary")]
     network_tap: Option<String>,
+
+    #[arg(short= 'c', long = "count", subcommand="network_tap")]
+    count: Option<String>,
 
     #[arg(short = 'b', conflicts_with="network_tap", conflicts_with="files")]
     binary: bool,

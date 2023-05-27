@@ -43,7 +43,6 @@ pub fn read_file(file_string: &str) -> Vec<Connection> {
     let mut connections = Vec::<Connection>::new();
 
     for param in file.lines() {
-        // dbg!(&param);
         if let Some(new_connection) = parse_traffic(&param) {
             connections.push(new_connection);
         }
@@ -60,7 +59,7 @@ pub fn read_file(file_string: &str) -> Vec<Connection> {
 //that output is either sorted or printed to stdout
 //maybe add an option to read only a certain amount from tcpdump
 
-pub fn read_tcpdump(device: &str) -> (Option<JoinHandle<()>>, Receiver<String>) {
+pub fn read_tcpdump(device: &str, iterations: Option<String>) -> (Option<JoinHandle<()>>, Receiver<String>) {
     println!("reading");
     // //check if device is valid
     // let devices = Device::list().unwrap();
@@ -75,24 +74,37 @@ pub fn read_tcpdump(device: &str) -> (Option<JoinHandle<()>>, Receiver<String>) 
     //     println!("Device not found: {:?}", device);
     //     return Vec::new();
     // }
-
-    let child = Command::new("tcpdump")
-        .arg("-n")
-        .arg("-i")
-        .arg(device)
-        // .arg("-c 3")
-        .stdout(Stdio::piped())
-        .stderr(Stdio::null())
-        .spawn()
-        .expect("failure");
+    //
+    let child = match iterations {
+        Some(max_iter) => {
+            Command::new("tcpdump")
+                    .arg("-n")
+                    .arg("-i")
+                    .arg(device)
+                    .arg("-c")
+                    .arg(max_iter)
+                    .stdout(Stdio::piped())
+                    .stderr(Stdio::null())
+                    .spawn()
+                    .expect("Failed on calling TcpDump, make sure you have tcpdump installed")
+        }
+        None => {
+            Command::new("tcpdump")
+                    .arg("-n")
+                    .arg("-i")
+                    .arg(device)
+                    .stdout(Stdio::piped())
+                    .stderr(Stdio::null())
+                    .spawn()
+                    .expect("Failed on calling TcpDump, make sure you have tcpdump installed")
+        }
+    };
 
     let (sender, receiver) = channel::<String>();
     let handler = spawn_tcpdump_thread(child, sender);
 
     return (handler, receiver);
 }
-
-
 
 fn spawn_tcpdump_thread(child: Child, sender: Sender<String>) -> Option<JoinHandle<()>> {
     if let Some(std) = child.stdout {
@@ -114,6 +126,25 @@ fn spawn_tcpdump_thread(child: Child, sender: Sender<String>) -> Option<JoinHand
     };
 }
 
+pub fn read_tcp_thread(handler: JoinHandle<()>, receiver: Receiver<String>) {
+
+
+}
+
+pub fn read_tcp_thread_iterations(handler: JoinHandle<()>, receiver: Receiver<String>) -> Vec<Connection> {
+    let mut iter_recv = receiver.iter();
+    let mut connections_read = Vec::<Connection>::new();
+
+    while let Some(received_string) = iter_recv.next() {
+        if let Some(new_connection) = parse_traffic(&received_string) {
+            connections_read.push(new_connection);
+        }
+    }
+
+    handler.join().unwrap();
+
+    return connections_read;
+}
 
 pub fn read_binary() {
     let devices = Device::list().unwrap();
@@ -163,6 +194,7 @@ fn get_grouped_connectons(
                                                                     .into_iter().map(|connection| (connection.source, connection)).collect();
 
     for connection in connections {
+
         if let Some(dest) = connection.destination {
             connection_map.entry(connection.source.ip())
                 .and_modify(|c| {
