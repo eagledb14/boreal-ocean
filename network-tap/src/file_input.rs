@@ -5,11 +5,15 @@ use std::fs;
 use std::net::IpAddr;
 use std::collections::HashMap;
 use std::str::FromStr;
+use std::thread::JoinHandle;
 use pcap::{Capture, Device};
-use std::process::{Command, Stdio};
+use std::process::{Command, Stdio, Child};
 use std::str;
 use std::io::{stdin, BufReader, BufRead};
 use std::time::Instant;
+
+use std::sync::mpsc::{channel, Sender, Receiver};
+
 
 pub fn read_stdin() -> Vec<Connection> {
     // dbg!("reading from stdin");
@@ -48,7 +52,16 @@ pub fn read_file(file_string: &str) -> Vec<Connection> {
     return connections;
 }
 
-pub fn read_tcpdump(device: &str) -> Vec<Connection> {
+
+//create a thread that reads from tcpdump
+//that writes to a channel or a pipe
+//then in another thread, or the maind thread
+//I parse the output
+//that output is either sorted or printed to stdout
+//maybe add an option to read only a certain amount from tcpdump
+
+pub fn read_tcpdump(device: &str) -> (Option<JoinHandle<()>>, Receiver<String>) {
+    println!("reading");
     // //check if device is valid
     // let devices = Device::list().unwrap();
     // let mut has_device = false;
@@ -66,45 +79,39 @@ pub fn read_tcpdump(device: &str) -> Vec<Connection> {
     let child = Command::new("tcpdump")
         .arg("-n")
         .arg("-i")
-        .arg("wlan0")
+        .arg(device)
         // .arg("-c 3")
         .stdout(Stdio::piped())
         .stderr(Stdio::null())
         .spawn()
         .expect("failure");
 
-    let handle = if let Some(std) = child.stdout {
+    let (sender, receiver) = channel::<String>();
+    let handler = spawn_tcpdump_thread(child, sender);
+
+    return (handler, receiver);
+}
+
+
+
+fn spawn_tcpdump_thread(child: Child, sender: Sender<String>) -> Option<JoinHandle<()>> {
+    if let Some(std) = child.stdout {
 
         let reader = BufReader::new(std);
         let hand = std::thread::spawn(move || {
 
-            let now = Instant::now();
-            let mut reps = 1;
-            println!("{:?}", now.elapsed());
-
             for line in reader.lines() {
-                println!("{}: {:?}", reps, now.elapsed());
                 if let Ok(line) = line {
-                    // if let Some(line) = parse_traffic(&line) {
-                    //     println!("{}: {}\n", reps, line);
-                    // }
+                    sender.send(line).unwrap();
                 }
-                reps += 1;
             }
         });
 
-        Some(hand)
+        return Some(hand);
     }
     else {
-        None
+        return None;
     };
-
-    if let Some(h) = handle {
-        _ = h.join();
-    }
-
-
-    Vec::new()
 }
 
 
@@ -146,6 +153,7 @@ pub fn sort_by_ip(connections: &[Connection], ip: String) -> Option<GroupedConne
 pub fn append_to_sort_by_ip(connections: &[Connection], ip: String, old_connection: GroupedConnection) -> Option<GroupedConnection> {
     return get_grouped_connectons(&connections, vec![old_connection]).get(&IpAddr::from_str(&ip).ok()?).cloned();
 }
+
 
 fn get_grouped_connectons(
     connections: &[Connection], 
