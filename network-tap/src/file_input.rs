@@ -48,30 +48,27 @@ pub fn read_file(file_string: &str) -> Vec<Connection> {
     return connections;
 }
 
-
-//create a thread that reads from tcpdump
-//that writes to a channel or a pipe
-//then in another thread, or the maind thread
-//I parse the output
-//that output is either sorted or printed to stdout
-//maybe add an option to read only a certain amount from tcpdump
-
+// TODO bug, IDK why I can't find the device, even though it's there,
+// not sure why it's not working, it works when I use it with Command, but not when looking for it
+// in the device list
 pub fn read_tcpdump(device: &str, iterations: Option<String>) -> (Option<JoinHandle<()>>, Receiver<String>) {
     println!("reading");
     // //check if device is valid
-    // let devices = Device::list().unwrap();
-    // let mut has_device = false;
-    // for d in devices {
-    //     if d.name == device {
-    //         has_device = false;
-    //     }
-    // }
+    let devices = Device::list().unwrap();
+    let mut has_device = false;
+    devices.iter().for_each(|d| println!("{}", d.name));
+    for d in devices {
+        if d.name.as_str() == device {
+            has_device = false;
+        }
+    }
+    println!("{}: {}", has_device, &device);
     //
     // if !has_device {
     //     println!("Device not found: {:?}", device);
     //     return Vec::new();
     // }
-    //
+
     let child = match iterations {
         Some(max_iter) => {
             Command::new("tcpdump")
@@ -182,7 +179,8 @@ pub fn append_to_sort_by_ip(connections: &[Connection], ip: String, old_connecti
     return get_grouped_connectons(&connections, vec![old_connection]).get(&IpAddr::from_str(&ip).ok()?).cloned();
 }
 
-
+// for some reason 0.0.0.0 ip doesn't convert into Grouped connections, for some reason it doesn't
+// include the ip address and any destination, even though it is included in the Connection struct
 fn get_grouped_connectons(
     connections: &[Connection], 
     old_connections: Vec<GroupedConnection>,
