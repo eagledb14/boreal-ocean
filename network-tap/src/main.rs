@@ -58,11 +58,6 @@ fn run_cli() {
         for connection in sorted_connections {
             println!("{}\n", connection);
         }
-
-        for connection in connections {
-            println!("{}\n", connection);
-        }
-
     }
     else if let Some(ip) = cli.sort_by_ip {
         if let Some(connection) = sort_by_ip(&connections, ip) {

@@ -48,9 +48,6 @@ pub fn read_file(file_string: &str) -> Vec<Connection> {
     return connections;
 }
 
-// TODO bug, IDK why I can't find the device, even though it's there,
-// not sure why it's not working, it works when I use it with Command, but not when looking for it
-// in the device list
 pub fn read_tcpdump(device: &str, iterations: Option<String>) -> (Option<JoinHandle<()>>, Receiver<String>) {
     println!("reading");
     // //check if device is valid
@@ -193,7 +190,13 @@ fn get_grouped_connectons(
                 c.push_port(connection.source.port());
                 c.connection_count += 1;
             })
-            .or_insert_with(|| GroupedConnection::new(connection.source.ip()));
+            .or_insert_with(|| GroupedConnection::new(connection.source.ip(), connection.destination, connection.source.port()));
+
+        if connection.source.ip() == IpAddr::from_str("0.0.0.0").unwrap() {
+            println!("{:?}", connection.source.port());
+            // println!("{:?}\n", connection_map);
+        }
+
     }
 
     return connection_map;

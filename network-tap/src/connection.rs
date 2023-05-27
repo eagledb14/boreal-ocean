@@ -41,6 +41,9 @@ impl Display for Connection {
     }
 }
 
+// ports are in their own HashSet because it is easier to group an ip if it is sending information
+// to multiple place over a different port, also allows it to show the different destinations that
+// are being connected to from the source
 #[derive(Debug, Clone)]
 pub struct GroupedConnection {
     pub source: IpAddr,
@@ -50,11 +53,16 @@ pub struct GroupedConnection {
 }
 
 impl GroupedConnection {
-    pub fn new(source: IpAddr) -> Self {
+    pub fn new(source: IpAddr, destination: SocketAddr, port: u16) -> Self {
+        let mut ports = HashSet::new();
+        ports.insert(port);
+
+        let mut destinations = HashSet::new();
+        destinations.insert(destination);
         Self {
             source,
-            ports: HashSet::new(),
-            destinations: HashSet::new(),
+            ports,
+            destinations,
             connection_count: 1,
         }
     }
