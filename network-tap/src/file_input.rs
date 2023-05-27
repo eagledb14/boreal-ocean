@@ -74,9 +74,10 @@ pub fn read_tcpdump(device: &str) -> Vec<Connection> {
         .expect("failure");
 
     let handle = if let Some(std) = child.stdout {
-        println!("reading");
+
         let reader = BufReader::new(std);
         let hand = std::thread::spawn(move || {
+
             let now = Instant::now();
             let mut reps = 1;
             println!("{:?}", now.elapsed());
@@ -136,27 +137,15 @@ pub fn sort_connections(connections: &[Connection]) -> Vec<GroupedConnection> {
 }
 
 pub fn sort_by_ip(connections: &[Connection], ip: String) -> Option<GroupedConnection> {
-
-    if let Some(connection) = get_grouped_connectons(&connections, vec![])
-                                .get(&IpAddr::from_str(&ip).ok()?) {
-        return Some(connection.clone());
-    }
-    else {
-        return None;
-    }
+    return get_grouped_connectons(&connections, vec![]).get(&IpAddr::from_str(&ip).ok()?).cloned();
 }
 
 fn get_grouped_connectons(
     connections: &[Connection], 
     old_connections: Vec<GroupedConnection>,
 ) -> HashMap<IpAddr, GroupedConnection> {
-            // let mut connection_map = HashMap::<IpAddr, GroupedConnection>::with_capacity(connections.len());
-    //
-    // for connection in old_connections.into_iter() {
-    //     connection_map.insert(connection.source, connection);
-    // }
     let mut connection_map: HashMap::<IpAddr, GroupedConnection> = old_connections
-                                                                        .into_iter().map(|connection| (connection.source, connection)).collect();
+                                                                    .into_iter().map(|connection| (connection.source, connection)).collect();
 
     for connection in connections {
         if let Some(dest) = connection.destination {
