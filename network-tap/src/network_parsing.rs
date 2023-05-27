@@ -2,7 +2,7 @@ use crate::connection::Connection;
 use chrono::NaiveTime;
 use std::net::{SocketAddr, IpAddr};
 use std::str::FromStr;
-
+//use std::process::Command;
 
 pub fn parse_traffic(params: &str) -> Option<Connection> {
     let parts = params.split(" ").map(String::from).collect::<Vec<String>>();
@@ -41,10 +41,10 @@ pub fn parse_traffic(params: &str) -> Option<Connection> {
 }
 
 fn parse_ip_and_ip6(source_string: &str, destination_string: &str) -> (Option<SocketAddr>, Option<SocketAddr>){
+    //SocketAddr::from_str only allow for the format ip:port, while the input has the format
+    //ip.port and this is the fastest way that I found, possible to benchmark other ways in the
+    //future
     let source = if let Some(port_location) = source_string.rfind('.') {
-        //SocketAddr::from_str only allow for the format ip:port, while the input has the format
-        //ip.port and this is the fastest way that I found, possible to benchmark other ways in the
-        //future
         let str_addr = format!("{}:{}", &source_string[..port_location], &source_string[(port_location + 1)..]);
         SocketAddr::from_str(&str_addr).ok()
     }

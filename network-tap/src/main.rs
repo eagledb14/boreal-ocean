@@ -4,7 +4,7 @@ mod connection;
 
 use clap::Parser;
 
-use file_input::{read_stdin, read_file, sort_connections, sort_by_ip};
+use file_input::{read_binary, read_stdin, read_file, sort_connections, sort_by_ip, read_tcpdump};
 use connection::Connection;
 
 
@@ -12,20 +12,22 @@ use connection::Connection;
 // make it more cli friendly
 
 //// add flags to read directly from tcpdump, you have to include the interface and flags, or not
-////// give them the flags option
 
 //// for zeek, if you ever figure out how to use that
-//// add option to only collect from a certain ip
-//// option to group by input and print the destinations
 
 
 
 // DONE
 //// add flags to read from stdin
 //// add flags for reading from a file, like it is now
+//// add option to only collect from a certain ip
+//// option to group by input and print the destinations
 
 fn main() {
+    run_cli();
+}
 
+fn run_cli() {
     let cli = Cli::parse();
     // println!("{:?}", cli.files);
     let mut connections = Vec::<Connection>::new();
@@ -34,6 +36,12 @@ fn main() {
         for file in files {
             connections.append(&mut read_file(&file));
         }
+    }
+    else if let Some(tcp_args) = cli.network_tap {
+        read_tcpdump(&tcp_args);
+    }
+    else if cli.binary {
+        read_binary();
     }
     else {
         connections.append(&mut read_stdin());
@@ -59,14 +67,12 @@ fn main() {
             println!("{}\n", connection);
         }
     }
-
 }
-
 
 #[derive(Parser, Debug)]
 struct Cli {
 
-    #[arg(short, long, conflicts_with="tcpdump")]
+    #[arg(short, long, conflicts_with="network_tap", conflicts_with="binary")]
     files: Option<Vec<String>>,
 
     #[arg(short = 'x', long = "connection")]
@@ -75,7 +81,10 @@ struct Cli {
     #[arg(short = 'i', long = "ip")]
     sort_by_ip: Option<String>,
 
-    #[arg(short, long, conflicts_with="files")]
-    tcpdump: Option<String>
+    #[arg(short = 't', long = "tap", conflicts_with="files", conflicts_with="binary")]
+    network_tap: Option<String>,
+
+    #[arg(short = 'b', conflicts_with="network_tap", conflicts_with="files")]
+    binary: bool,
 }
 

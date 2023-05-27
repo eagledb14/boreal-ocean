@@ -69,7 +69,6 @@ impl GroupedConnection {
     }
 }
 
-
 impl Display for GroupedConnection {
     fn fmt(&self, f: &mut Formatter<'_>) -> Result {
         write!(f, "Source: {}\n", self.source)?;
