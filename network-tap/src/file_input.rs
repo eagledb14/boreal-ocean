@@ -56,18 +56,17 @@ pub fn read_tcpdump(device: &str, iterations: Option<String>) -> (Option<JoinHan
     // //check if device is valid
     let devices = Device::list().unwrap();
     let mut has_device = false;
-    devices.iter().for_each(|d| println!("{}", d.name));
     for d in devices {
         if d.name.as_str() == device {
-            has_device = false;
+            has_device = true;
         }
     }
-    println!("{}: {}", has_device, &device);
-    //
-    // if !has_device {
-    //     println!("Device not found: {:?}", device);
-    //     return Vec::new();
-    // }
+
+    let (sender, receiver) = channel::<String>();
+    if !has_device {
+        println!("Device not found: {:?}", device);
+        return (None, receiver);
+    }
 
     let child = match iterations {
         Some(max_iter) => {
@@ -94,7 +93,6 @@ pub fn read_tcpdump(device: &str, iterations: Option<String>) -> (Option<JoinHan
         }
     };
 
-    let (sender, receiver) = channel::<String>();
     let handler = spawn_tcpdump_thread(child, sender);
 
     return (handler, receiver);
