@@ -1,7 +1,6 @@
 use crate::connection::{Connection, GroupedConnection};
 use crate::network_parsing::parse_traffic;
 
-use std::io::{stdin, Read};
 use std::fs;
 use std::net::IpAddr;
 use std::collections::HashMap;
@@ -9,7 +8,7 @@ use std::str::FromStr;
 use pcap::{Capture, Device};
 use std::process::{Command, Stdio};
 use std::str;
-use std::io::{BufReader, BufRead};
+use std::io::{stdin, BufReader, BufRead};
 use std::time::Instant;
 
 pub fn read_stdin() -> Vec<Connection> {
@@ -133,12 +132,12 @@ pub fn read_binary() {
 
 pub fn sort_connections(connections: &[Connection]) -> Vec<GroupedConnection> {
 
-    return get_grouped_connectons(connections).into_values().collect();
+    return get_grouped_connectons(connections, vec![]).into_values().collect();
 }
 
 pub fn sort_by_ip(connections: &[Connection], ip: String) -> Option<GroupedConnection> {
 
-    if let Some(connection) = get_grouped_connectons(&connections)
+    if let Some(connection) = get_grouped_connectons(&connections, vec![])
                                 .get(&IpAddr::from_str(&ip).ok()?) {
         return Some(connection.clone());
     }
@@ -149,13 +148,15 @@ pub fn sort_by_ip(connections: &[Connection], ip: String) -> Option<GroupedConne
 
 fn get_grouped_connectons(
     connections: &[Connection], 
-    // old_connections: &[GroupedConnection],
+    old_connections: Vec<GroupedConnection>,
 ) -> HashMap<IpAddr, GroupedConnection> {
-    let mut connection_map = HashMap::<IpAddr, GroupedConnection>::with_capacity(connections.len());
-
-    // for connection in old_connections {
-    //     connection_map
+            // let mut connection_map = HashMap::<IpAddr, GroupedConnection>::with_capacity(connections.len());
+    //
+    // for connection in old_connections.into_iter() {
+    //     connection_map.insert(connection.source, connection);
     // }
+    let mut connection_map: HashMap::<IpAddr, GroupedConnection> = old_connections
+                                                                        .into_iter().map(|connection| (connection.source, connection)).collect();
 
     for connection in connections {
         if let Some(dest) = connection.destination {
@@ -164,7 +165,7 @@ fn get_grouped_connectons(
                     c.push_destination(dest);
                     c.push_port(connection.source.port());
                 })
-                .or_insert(GroupedConnection::new(connection.source.ip()));
+                .or_insert_with(|| GroupedConnection::new(connection.source.ip()));
         }
     }
 
