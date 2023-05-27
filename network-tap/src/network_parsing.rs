@@ -21,13 +21,17 @@ pub fn parse_traffic(params: &str) -> Option<Connection> {
     };
 
     
-    let (source, dest) = parse_ip_and_ip6(&parts[2], &parts[4]);
-    let source = if let Some(source) = source {
-        source
-    }
-    else {
-        return None;
+    let source = match parse_source(&parts[2]) {
+        Some(s) => s,
+        None => return None,
     };
+
+
+    let dest = match parse_destination(&parts[4]) {
+        Some(d) => d,
+        None => return None,
+    };
+
 
     // grab any additional information from this parameter
     let misc = if params.len() > 5 {
@@ -40,7 +44,7 @@ pub fn parse_traffic(params: &str) -> Option<Connection> {
     return Some(Connection::new(timestamp, source, dest, misc));
 }
 
-fn parse_ip_and_ip6(source_string: &str, destination_string: &str) -> (Option<SocketAddr>, Option<SocketAddr>){
+fn parse_source(source_string: &str) -> Option<SocketAddr> {
     //SocketAddr::from_str only allow for the format ip:port, while the input has the format
     //ip.port and this is the fastest way that I found, possible to benchmark other ways in the
     //future
@@ -58,6 +62,10 @@ fn parse_ip_and_ip6(source_string: &str, destination_string: &str) -> (Option<So
         sock_addr
     };
 
+    return source;
+}
+
+fn parse_destination(destination_string: &str) -> Option<SocketAddr>{
     let destination_string = destination_string.trim_end_matches(":");
     let destination = if let Some(port_location) = destination_string.rfind('.') {
         let str_addr = format!("{}:{}", &destination_string[..port_location], &destination_string[(port_location + 1)..]);
@@ -72,5 +80,5 @@ fn parse_ip_and_ip6(source_string: &str, destination_string: &str) -> (Option<So
         sock_addr
     };
 
-    return (source, destination);
+    return destination;
 }

@@ -8,12 +8,12 @@ use std::collections::HashSet;
 pub struct Connection {
     pub timestamp: NaiveTime,
     pub source: SocketAddr,
-    pub destination: Option<SocketAddr>,
+    pub destination: SocketAddr,
     pub misc: Vec<String>,
 }
 
 impl Connection {
-    pub fn new(timestamp: NaiveTime, source: SocketAddr, destination: Option<SocketAddr>, misc: Vec<String>) -> Self {
+    pub fn new(timestamp: NaiveTime, source: SocketAddr, destination: SocketAddr, misc: Vec<String>) -> Self {
         Self {
             timestamp,
             source,
@@ -29,10 +29,7 @@ impl Display for Connection {
 
         write!(f, "Source: {}\n", self.source)?;
 
-        match &self.destination {
-            Some(destination) => write!(f, "Destination: {}\n", destination)?,
-            None => (),
-        };
+        write!(f, "Destination: {}\n", self.destination)?;
 
         if !(&self.misc.is_empty()) {
             write!(f, "Misc: {}", self.misc.join(", "))
@@ -48,7 +45,8 @@ impl Display for Connection {
 pub struct GroupedConnection {
     pub source: IpAddr,
     pub ports: HashSet<u16>,
-    pub destinations: HashSet<SocketAddr>
+    pub destinations: HashSet<SocketAddr>,
+    pub connection_count: i32,
 }
 
 impl GroupedConnection {
@@ -56,7 +54,8 @@ impl GroupedConnection {
         Self {
             source,
             ports: HashSet::new(),
-            destinations: HashSet::new()
+            destinations: HashSet::new(),
+            connection_count: 1,
         }
     }
 
@@ -73,7 +72,8 @@ impl Display for GroupedConnection {
     fn fmt(&self, f: &mut Formatter<'_>) -> Result {
         write!(f, "Source: {}\n", self.source)?;
         write!(f, "Ports: {:?}\n", self.ports)?;
-        write!(f, "Destinations: {:?}", self.destinations)
+        write!(f, "Destinations: {:?}\n", self.destinations)?;
+        write!(f, "Connections: {}", self.connection_count)
     }
 }
 

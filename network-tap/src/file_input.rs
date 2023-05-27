@@ -1,17 +1,14 @@
 use crate::connection::{Connection, GroupedConnection};
 use crate::network_parsing::parse_traffic;
 
-use std::fs;
+use std::{fs, str};
 use std::net::IpAddr;
 use std::collections::HashMap;
 use std::str::FromStr;
 use std::thread::JoinHandle;
 use pcap::{Capture, Device};
 use std::process::{Command, Stdio, Child};
-use std::str;
 use std::io::{stdin, BufReader, BufRead};
-use std::time::Instant;
-
 use std::sync::mpsc::{channel, Sender, Receiver};
 
 
@@ -194,15 +191,13 @@ fn get_grouped_connectons(
                                                                     .into_iter().map(|connection| (connection.source, connection)).collect();
 
     for connection in connections {
-
-        if let Some(dest) = connection.destination {
-            connection_map.entry(connection.source.ip())
-                .and_modify(|c| {
-                    c.push_destination(dest);
-                    c.push_port(connection.source.port());
-                })
-                .or_insert_with(|| GroupedConnection::new(connection.source.ip()));
-        }
+        connection_map.entry(connection.source.ip())
+            .and_modify(|c| {
+                c.push_destination(connection.destination);
+                c.push_port(connection.source.port());
+                c.connection_count += 1;
+            })
+            .or_insert_with(|| GroupedConnection::new(connection.source.ip()));
     }
 
     return connection_map;
