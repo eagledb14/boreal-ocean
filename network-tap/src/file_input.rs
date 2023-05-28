@@ -12,6 +12,7 @@ use std::io::{stdin, BufReader, BufRead};
 use std::sync::mpsc::{channel, Sender, Receiver};
 
 
+
 pub fn read_stdin() -> Vec<Connection> {
     // dbg!("reading from stdin");
     let stdin = stdin();
@@ -115,9 +116,18 @@ fn spawn_tcpdump_thread(child: Child, sender: Sender<String>) -> Option<JoinHand
     };
 }
 
-pub fn read_tcp_thread(handler: JoinHandle<()>, receiver: Receiver<String>) {
+pub fn read_tcp_thread(_handler: JoinHandle<()>, receiver: Receiver<String>) {
+    let mut iter_recv = receiver.iter();
 
-
+    let mut reps = 0;
+    while let Some(received_string) = iter_recv.next() {
+        match parse_traffic(&received_string) {
+            Some(connection) => println!("{}: {}", reps, connection),
+            None => (),
+        }
+        reps += 1;
+    }
+    
 }
 
 pub fn read_tcp_thread_iterations(handler: JoinHandle<()>, receiver: Receiver<String>) -> Vec<Connection> {
@@ -174,8 +184,6 @@ pub fn append_to_sort_by_ip(connections: &[Connection], ip: String, old_connecti
     return get_grouped_connectons(&connections, vec![old_connection]).get(&IpAddr::from_str(&ip).ok()?).cloned();
 }
 
-// for some reason 0.0.0.0 ip doesn't convert into Grouped connections, for some reason it doesn't
-// include the ip address and any destination, even though it is included in the Connection struct
 fn get_grouped_connectons(
     connections: &[Connection], 
     old_connections: Vec<GroupedConnection>,
@@ -191,11 +199,6 @@ fn get_grouped_connectons(
                 c.connection_count += 1;
             })
             .or_insert_with(|| GroupedConnection::new(connection.source.ip(), connection.destination, connection.source.port()));
-
-        if connection.source.ip() == IpAddr::from_str("0.0.0.0").unwrap() {
-            println!("{:?}", connection.source.port());
-            // println!("{:?}\n", connection_map);
-        }
 
     }
 

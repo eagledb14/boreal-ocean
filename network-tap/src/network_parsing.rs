@@ -2,7 +2,6 @@ use crate::connection::Connection;
 use chrono::NaiveTime;
 use std::net::{SocketAddr, IpAddr};
 use std::str::FromStr;
-//use std::process::Command;
 
 pub fn parse_traffic(params: &str) -> Option<Connection> {
     let parts = params.split(" ").map(String::from).collect::<Vec<String>>();

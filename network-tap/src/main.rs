@@ -3,8 +3,7 @@ mod file_input;
 mod connection;
 
 use clap::Parser;
-
-use file_input::{read_binary, read_stdin, read_file, sort_connections, sort_by_ip, read_tcpdump, read_tcp_thread_iterations};
+use file_input::{read_tcp_thread, read_binary, read_stdin, read_file, sort_connections, sort_by_ip, read_tcpdump, read_tcp_thread_iterations};
 use connection::Connection;
 
 
@@ -39,10 +38,15 @@ fn run_cli() {
         }
     }
     else if let Some(tcp_args) = cli.network_tap {
-        let (handler, receiver) = read_tcpdump(&tcp_args, cli.count);
+        let (handler, receiver) = read_tcpdump(&tcp_args, cli.count.clone());
 
         if let Some(handle) = handler {
-            connections.append(&mut read_tcp_thread_iterations(handle, receiver));
+            if let Some(_) = cli.count {
+                connections.append(&mut read_tcp_thread_iterations(handle, receiver));
+            }
+            else {
+                read_tcp_thread(handle, receiver);
+            }
         }
     }
     else if cli.binary {
