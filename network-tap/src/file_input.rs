@@ -122,7 +122,7 @@ pub fn read_tcp_thread(_handler: JoinHandle<()>, receiver: Receiver<String>) {
     let mut reps = 0;
     while let Some(received_string) = iter_recv.next() {
         match parse_traffic(&received_string) {
-            Some(connection) => println!("{}: {}", reps, connection),
+            Some(connection) => println!("{}: {}\n", reps, connection),
             None => (),
         }
         reps += 1;
@@ -180,7 +180,7 @@ pub fn sort_by_ip(connections: &[Connection], ip: String) -> Option<GroupedConne
     return get_grouped_connectons(&connections, vec![]).get(&IpAddr::from_str(&ip).ok()?).cloned();
 }
 
-pub fn append_to_sort_by_ip(connections: &[Connection], ip: String, old_connection: GroupedConnection) -> Option<GroupedConnection> {
+pub fn append_and_sort_by_ip(connections: &[Connection], ip: String, old_connection: GroupedConnection) -> Option<GroupedConnection> {
     return get_grouped_connectons(&connections, vec![old_connection]).get(&IpAddr::from_str(&ip).ok()?).cloned();
 }
 

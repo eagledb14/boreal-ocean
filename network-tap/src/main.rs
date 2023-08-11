@@ -6,30 +6,14 @@ use clap::Parser;
 use file_input::{read_tcp_thread, read_binary, read_stdin, read_file, sort_connections, sort_by_ip, read_tcpdump, read_tcp_thread_iterations};
 use connection::Connection;
 
-
-// TODO
-// make it more cli friendly
-
-//// add flags to read directly from tcpdump, you have to include the interface and flags, or not
-///// working on it
-
-//// for zeek, if you ever figure out how to use that
-
-
-
-// DONE
-//// add flags to read from stdin
-//// add flags for reading from a file, like it is now
-//// add option to only collect from a certain ip
-//// option to group by input and print the destinations
-
 fn main() {
+    let _hram = 2;
     run_cli();
 }
 
 fn run_cli() {
     let cli = Cli::parse();
-    // println!("{:?}", cli.files);
+
     let mut connections = Vec::<Connection>::new();
 
     if let Some(files) = cli.files {
